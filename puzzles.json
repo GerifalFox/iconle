@@ -1,0 +1,52 @@
+[
+  {
+    "solution": ["🦖","🏝️","🚗"],
+    "difficulty": "medium",
+    "title": "Jurassic Park"
+  },
+  {
+    "solution": ["🤖","🌌","🚀"],
+    "difficulty": "medium",
+    "title": "Wall-E"
+  },
+  {
+    "solution": ["👸","🐸","💋"],
+    "difficulty": "easy",
+    "title": "La princesa y el sapo"
+  },
+  {
+    "solution": ["🧙‍♂️","🪄","🏰"],
+    "difficulty": "medium",
+    "title": "Harry Potter"
+  },
+  {
+    "solution": ["🦁","👑","🐾"],
+    "difficulty": "easy",
+    "title": "El Rey León"
+  },
+  {
+    "solution": ["🚢","🧊","❤️"],
+    "difficulty": "medium",
+    "title": "Titanic"
+  },
+  {
+    "solution": ["🧞‍♂️","💡","🕌"],
+    "difficulty": "medium",
+    "title": "Aladdin"
+  },
+  {
+    "solution": ["👨‍🚀","🌕","🚀"],
+    "difficulty": "hard",
+    "title": "Apollo 13"
+  },
+  {
+    "solution": ["🦸‍♂️","🕷️","🦇"],
+    "difficulty": "medium",
+    "title": "Spider-Man"
+  },
+  {
+    "solution": ["🐵","🌴","👦"],
+    "difficulty": "easy",
+    "title": "El Planeta de los Simios"
+  }
+]
