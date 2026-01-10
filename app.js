@@ -2,18 +2,15 @@
 // CONFIGURACIÓN GLOBAL
 // ======================
 
-// Fecha de inicio del juego (DD/MM/YYYY)
 const START_DATE = new Date(2026, 0, 10); // 10 enero 2026
 const MAX_ATTEMPTS = 6;
 
-// Puzzle de ejemplo (día 1)
 const PUZZLE = {
   solution: ["🦖", "🏝️", "🚗"],
   difficulty: "medium",
   title: "Jurassic Park"
 };
 
-// Teclado reducido (temporal)
 const ICONS = [
   "🦖","🏝️","🚗","🚢","💔","🌊",
   "🤖","⚡","🌌","👻","❤️","🔫"
@@ -43,7 +40,7 @@ let finished = false;
 let guesses = [];
 
 // ======================
-// ELEMENTOS DOM
+// DOM
 // ======================
 
 const board = document.getElementById("board");
@@ -53,7 +50,7 @@ const checkBtn = document.getElementById("checkBtn");
 const deleteBtn = document.getElementById("deleteBtn");
 
 // ======================
-// INICIALIZACIÓN
+// INIT
 // ======================
 
 function initBoard() {
@@ -96,8 +93,6 @@ function onKey(icon) {
 
 deleteBtn.addEventListener("click", () => {
   if (finished) return;
-  if (currentGuess.length === 0) return;
-
   currentGuess.pop();
   renderCurrentRow();
   updateButtons();
@@ -106,8 +101,7 @@ deleteBtn.addEventListener("click", () => {
 checkBtn.addEventListener("click", () => {
   if (finished) return;
   if (currentGuess.length !== 3) return;
-
-  checkGuess();
+  submitGuess();
 });
 
 // ======================
@@ -126,24 +120,51 @@ function updateButtons() {
 }
 
 // ======================
-// LÓGICA PRINCIPAL
+// GAME LOGIC
 // ======================
 
-function checkGuess() {
-  const row = board.children[currentRow];
+function submitGuess() {
+  const guess = [...currentGuess];
+  guesses.push(guess);
+
+  renderGuessResult(guess, currentRow);
+
+  if (guess.join("") === PUZZLE.solution.join("")) {
+    finished = true;
+    status.textContent = `¡Correcto! 🎉 — ${PUZZLE.title}`;
+    saveState();
+    return;
+  }
+
+  currentRow++;
+  currentGuess = [];
+  updateButtons();
+  saveState();
+
+  if (currentRow >= MAX_ATTEMPTS) {
+    finished = true;
+    status.textContent =
+      `Fin. La película era ${PUZZLE.title} ${PUZZLE.solution.join("")}`;
+    saveState();
+  }
+}
+
+function renderGuessResult(guess, rowIndex) {
+  const row = board.children[rowIndex];
   const solutionCopy = [...PUZZLE.solution];
 
-  // Verdes
-  currentGuess.forEach((icon, i) => {
+  // verdes
+  guess.forEach((icon, i) => {
     const cell = row.children[i];
+    cell.textContent = icon;
     if (icon === PUZZLE.solution[i]) {
       cell.classList.add("green");
       solutionCopy[i] = null;
     }
   });
 
-  // Amarillos / grises
-  currentGuess.forEach((icon, i) => {
+  // amarillos / grises
+  guess.forEach((icon, i) => {
     const cell = row.children[i];
     if (cell.classList.contains("green")) return;
 
@@ -155,25 +176,6 @@ function checkGuess() {
       cell.classList.add("gray");
     }
   });
-
-  guesses.push([...currentGuess]);
-  saveState();
-
-  if (currentGuess.join("") === PUZZLE.solution.join("")) {
-    finished = true;
-    status.textContent = `¡Correcto! 🎉 — ${PUZZLE.title}`;
-    return;
-  }
-
-  currentRow++;
-  currentGuess = [];
-  updateButtons();
-
-  if (currentRow >= MAX_ATTEMPTS) {
-    finished = true;
-    status.textContent =
-      `Fin. La película era ${PUZZLE.title} ${PUZZLE.solution.join("")}`;
-  }
 }
 
 // ======================
@@ -200,13 +202,20 @@ function loadState() {
   guesses = state.guesses;
   finished = state.finished;
 
-  guesses.forEach((guess, rowIndex) => {
-    currentGuess = guess;
-    currentRow = rowIndex;
-    checkGuess();
+  guesses.forEach((guess, index) => {
+    renderGuessResult(guess, index);
   });
 
-  currentGuess = [];
+  if (finished) {
+    if (
+      guesses.some(g => g.join("") === PUZZLE.solution.join(""))
+    ) {
+      status.textContent = `¡Correcto! 🎉 — ${PUZZLE.title}`;
+    } else {
+      status.textContent =
+        `Fin. La película era ${PUZZLE.title} ${PUZZLE.solution.join("")}`;
+    }
+  }
 }
 
 // ======================
