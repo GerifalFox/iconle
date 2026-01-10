@@ -24,6 +24,37 @@ body {
   padding: 16px;
 }
 
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.controls button {
+  flex: 1;
+  padding: 12px 0;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#deleteBtn {
+  background: #565758;
+  color: white;
+}
+
+#checkBtn {
+  background: #538d4e;
+  color: white;
+}
+
+#checkBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
 header {
   text-align: center;
   margin-bottom: 16px;
