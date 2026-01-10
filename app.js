@@ -3,16 +3,12 @@
 // ======================
 
 const MAX_ATTEMPTS = 6;
-
-const PUZZLE = {
-  solution: ["🦖", "🏝️", "🚗"],
-  difficulty: "medium",
-  title: "Jurassic Park"
-};
-
 const ICONS = [
   "🦖","🏝️","🚗","🚢","💔","🌊",
-  "🤖","⚡","🌌","👻","❤️","🔫"
+  "🤖","⚡","🌌","👻","❤️","🔫",
+  "👸","🐸","💋","🧙‍♂️","🪄","🏰",
+  "🦁","👑","🐾","🚢","🧊","🧞‍♂️","💡","🕌",
+  "👨‍🚀","🌕","🦸‍♂️","🕷️","🦇","🐵","🌴","👦"
 ];
 
 // ======================
@@ -35,7 +31,6 @@ if (!DAY_KEY) {
   localStorage.setItem("iconle-current-day", DAY_KEY);
 }
 
-// Si el día real ha cambiado, reset limpio
 if (DAY_KEY !== REAL_TODAY) {
   localStorage.removeItem(`iconle-${DAY_KEY}`);
   localStorage.setItem("iconle-current-day", REAL_TODAY);
@@ -52,6 +47,7 @@ let currentRow = 0;
 let currentGuess = [];
 let finished = false;
 let guesses = [];
+let PUZZLE = null;
 
 // ======================
 // DOM
@@ -117,7 +113,6 @@ deleteBtn.addEventListener("click", () => {
 checkBtn.addEventListener("click", () => {
   if (finished) return;
   if (currentGuess.length !== 3) return;
-
   submitGuess();
 });
 
@@ -134,6 +129,35 @@ function renderCurrentRow() {
 
 function updateButtons() {
   checkBtn.disabled = currentGuess.length !== 3;
+}
+
+function renderGuessResult(guess, rowIndex) {
+  const row = board.children[rowIndex];
+  const solutionCopy = [...PUZZLE.solution];
+
+  // verdes
+  guess.forEach((icon, i) => {
+    const cell = row.children[i];
+    cell.textContent = icon;
+    if (icon === PUZZLE.solution[i]) {
+      cell.classList.add("green");
+      solutionCopy[i] = null;
+    }
+  });
+
+  // amarillos / grises
+  guess.forEach((icon, i) => {
+    const cell = row.children[i];
+    if (cell.classList.contains("green")) return;
+
+    const index = solutionCopy.indexOf(icon);
+    if (index !== -1) {
+      cell.classList.add("yellow");
+      solutionCopy[index] = null;
+    } else {
+      cell.classList.add("gray");
+    }
+  });
 }
 
 // ======================
@@ -164,35 +188,6 @@ function submitGuess() {
       `Fin. La película era ${PUZZLE.title} ${PUZZLE.solution.join("")}`;
     saveState();
   }
-}
-
-function renderGuessResult(guess, rowIndex) {
-  const row = board.children[rowIndex];
-  const solutionCopy = [...PUZZLE.solution];
-
-  // Verdes
-  guess.forEach((icon, i) => {
-    const cell = row.children[i];
-    cell.textContent = icon;
-    if (icon === PUZZLE.solution[i]) {
-      cell.classList.add("green");
-      solutionCopy[i] = null;
-    }
-  });
-
-  // Amarillos / grises
-  guess.forEach((icon, i) => {
-    const cell = row.children[i];
-    if (cell.classList.contains("green")) return;
-
-    const index = solutionCopy.indexOf(icon);
-    if (index !== -1) {
-      cell.classList.add("yellow");
-      solutionCopy[index] = null;
-    } else {
-      cell.classList.add("gray");
-    }
-  });
 }
 
 // ======================
@@ -234,10 +229,29 @@ function loadState() {
 }
 
 // ======================
+// CARGA DEL JSON
+// ======================
+
+async function loadPuzzleJSON() {
+  try {
+    const res = await fetch("puzzles.json");
+    const puzzles = await res.json();
+
+    // Elegir puzzle según día (mod 10 para 10 puzzles)
+    const dayIndex = new Date().getDate() % puzzles.length;
+    PUZZLE = puzzles[dayIndex];
+
+    initBoard();
+    initKeyboard();
+    loadState();
+    updateButtons();
+  } catch (err) {
+    console.error("Error cargando puzzles.json", err);
+  }
+}
+
+// ======================
 // START
 // ======================
 
-initBoard();
-initKeyboard();
-loadState();
-updateButtons();
+loadPuzzleJSON();
