@@ -1,27 +1,63 @@
-// --- CONFIGURACIÓN TEMPORAL (mock del día) ---
-const SOLUTION = ["🦖", "🏝️", "🚗"]; // Jurassic Park (ejemplo)
+// ======================
+// CONFIGURACIÓN GLOBAL
+// ======================
+
+// Fecha de inicio del juego (DD/MM/YYYY)
+const START_DATE = new Date(2026, 0, 10); // 10 enero 2026
 const MAX_ATTEMPTS = 6;
 
-// Teclado inicial (subset del set final)
+// Puzzle de ejemplo (día 1)
+const PUZZLE = {
+  solution: ["🦖", "🏝️", "🚗"],
+  difficulty: "medium",
+  title: "Jurassic Park"
+};
+
+// Teclado reducido (temporal)
 const ICONS = [
   "🦖","🏝️","🚗","🚢","💔","🌊",
   "🤖","⚡","🌌","👻","❤️","🔫"
 ];
 
-// --- ESTADO ---
+// ======================
+// CÁLCULO DEL DÍA
+// ======================
+
+function getDayNumber() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const diff = today - START_DATE;
+  return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
+}
+
+const DAY_NUMBER = getDayNumber();
+const STORAGE_KEY = `iconle-day-${DAY_NUMBER}`;
+
+// ======================
+// ESTADO
+// ======================
+
 let currentRow = 0;
 let currentGuess = [];
 let finished = false;
+let guesses = [];
 
-// --- ELEMENTOS ---
+// ======================
+// ELEMENTOS DOM
+// ======================
+
 const board = document.getElementById("board");
 const keyboard = document.getElementById("keyboard");
 const status = document.getElementById("status");
 const checkBtn = document.getElementById("checkBtn");
 const deleteBtn = document.getElementById("deleteBtn");
 
-// --- INICIALIZACIÓN ---
+// ======================
+// INICIALIZACIÓN
+// ======================
+
 function initBoard() {
+  board.innerHTML = "";
   for (let i = 0; i < MAX_ATTEMPTS; i++) {
     const row = document.createElement("div");
     row.className = "row";
@@ -35,6 +71,7 @@ function initBoard() {
 }
 
 function initKeyboard() {
+  keyboard.innerHTML = "";
   ICONS.forEach(icon => {
     const key = document.createElement("div");
     key.className = "key";
@@ -44,7 +81,10 @@ function initKeyboard() {
   });
 }
 
-// --- INPUT ---
+// ======================
+// INPUT
+// ======================
+
 function onKey(icon) {
   if (finished) return;
   if (currentGuess.length >= 3) return;
@@ -70,7 +110,10 @@ checkBtn.addEventListener("click", () => {
   checkGuess();
 });
 
-// --- RENDER ---
+// ======================
+// RENDER
+// ======================
+
 function renderCurrentRow() {
   const row = board.children[currentRow];
   [...row.children].forEach((cell, i) => {
@@ -82,15 +125,18 @@ function updateButtons() {
   checkBtn.disabled = currentGuess.length !== 3;
 }
 
-// --- LÓGICA PRINCIPAL ---
+// ======================
+// LÓGICA PRINCIPAL
+// ======================
+
 function checkGuess() {
   const row = board.children[currentRow];
-  const solutionCopy = [...SOLUTION];
+  const solutionCopy = [...PUZZLE.solution];
 
   // Verdes
   currentGuess.forEach((icon, i) => {
     const cell = row.children[i];
-    if (icon === SOLUTION[i]) {
+    if (icon === PUZZLE.solution[i]) {
       cell.classList.add("green");
       solutionCopy[i] = null;
     }
@@ -110,26 +156,64 @@ function checkGuess() {
     }
   });
 
-  // Comprobar victoria
-  if (currentGuess.join("") === SOLUTION.join("")) {
+  guesses.push([...currentGuess]);
+  saveState();
+
+  if (currentGuess.join("") === PUZZLE.solution.join("")) {
     finished = true;
-    status.textContent = "¡Correcto! 🎉";
+    status.textContent = `¡Correcto! 🎉 — ${PUZZLE.title}`;
     return;
   }
 
-  // Siguiente intento
   currentRow++;
   currentGuess = [];
   updateButtons();
 
-  // Fin del juego
   if (currentRow >= MAX_ATTEMPTS) {
     finished = true;
-    status.textContent = "Fin. La solución era " + SOLUTION.join("");
+    status.textContent =
+      `Fin. La película era ${PUZZLE.title} ${PUZZLE.solution.join("")}`;
   }
 }
 
-// --- START ---
+// ======================
+// PERSISTENCIA
+// ======================
+
+function saveState() {
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify({
+      currentRow,
+      guesses,
+      finished
+    })
+  );
+}
+
+function loadState() {
+  const data = localStorage.getItem(STORAGE_KEY);
+  if (!data) return;
+
+  const state = JSON.parse(data);
+  currentRow = state.currentRow;
+  guesses = state.guesses;
+  finished = state.finished;
+
+  guesses.forEach((guess, rowIndex) => {
+    currentGuess = guess;
+    currentRow = rowIndex;
+    checkGuess();
+  });
+
+  currentGuess = [];
+}
+
+// ======================
+// START
+// ======================
+
 initBoard();
 initKeyboard();
+loadState();
 updateButtons();
