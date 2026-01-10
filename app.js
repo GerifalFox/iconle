@@ -1,8 +1,7 @@
 // ======================
-// CONFIGURACIÓN GLOBAL
+// CONFIGURACIÓN
 // ======================
 
-const START_DATE = new Date(2026, 0, 10); // 10 enero 2026
 const MAX_ATTEMPTS = 6;
 
 const PUZZLE = {
@@ -17,18 +16,33 @@ const ICONS = [
 ];
 
 // ======================
-// CÁLCULO DEL DÍA
+// DÍA ACTIVO (FIJO)
 // ======================
 
-function getDayNumber() {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const diff = today - START_DATE;
-  return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
+function getTodayKey() {
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth() + 1).padStart(2, "0");
+  const dd = String(now.getDate()).padStart(2, "0");
+  return `${yyyy}-${mm}-${dd}`;
 }
 
-const DAY_NUMBER = getDayNumber();
-const STORAGE_KEY = `iconle-day-${DAY_NUMBER}`;
+let DAY_KEY = localStorage.getItem("iconle-current-day");
+const REAL_TODAY = getTodayKey();
+
+if (!DAY_KEY) {
+  DAY_KEY = REAL_TODAY;
+  localStorage.setItem("iconle-current-day", DAY_KEY);
+}
+
+// Si el día real ha cambiado, reset limpio
+if (DAY_KEY !== REAL_TODAY) {
+  localStorage.removeItem(`iconle-${DAY_KEY}`);
+  localStorage.setItem("iconle-current-day", REAL_TODAY);
+  location.reload();
+}
+
+const STORAGE_KEY = `iconle-${DAY_KEY}`;
 
 // ======================
 // ESTADO
@@ -93,6 +107,8 @@ function onKey(icon) {
 
 deleteBtn.addEventListener("click", () => {
   if (finished) return;
+  if (currentGuess.length === 0) return;
+
   currentGuess.pop();
   renderCurrentRow();
   updateButtons();
@@ -101,6 +117,7 @@ deleteBtn.addEventListener("click", () => {
 checkBtn.addEventListener("click", () => {
   if (finished) return;
   if (currentGuess.length !== 3) return;
+
   submitGuess();
 });
 
@@ -153,7 +170,7 @@ function renderGuessResult(guess, rowIndex) {
   const row = board.children[rowIndex];
   const solutionCopy = [...PUZZLE.solution];
 
-  // verdes
+  // Verdes
   guess.forEach((icon, i) => {
     const cell = row.children[i];
     cell.textContent = icon;
@@ -163,7 +180,7 @@ function renderGuessResult(guess, rowIndex) {
     }
   });
 
-  // amarillos / grises
+  // Amarillos / grises
   guess.forEach((icon, i) => {
     const cell = row.children[i];
     if (cell.classList.contains("green")) return;
@@ -207,9 +224,7 @@ function loadState() {
   });
 
   if (finished) {
-    if (
-      guesses.some(g => g.join("") === PUZZLE.solution.join(""))
-    ) {
+    if (guesses.some(g => g.join("") === PUZZLE.solution.join(""))) {
       status.textContent = `¡Correcto! 🎉 — ${PUZZLE.title}`;
     } else {
       status.textContent =
