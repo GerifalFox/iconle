@@ -1,52 +1,62 @@
 [
   {
-    "solution": ["🦖","🏝️","🚗"],
-    "difficulty": "medium",
-    "title": "Jurassic Park"
-  },
-  {
-    "solution": ["🤖","🌌","🚀"],
-    "difficulty": "medium",
-    "title": "Wall-E"
-  },
-  {
-    "solution": ["👸","🐸","💋"],
+    "title_es": "Parque Jurásico",
+    "title_en": "Jurassic Park",
     "difficulty": "easy",
-    "title": "La princesa y el sapo"
+    "solution": ["🦖","🏝️","🚗"]
   },
   {
-    "solution": ["🧙‍♂️","🪄","🏰"],
-    "difficulty": "medium",
-    "title": "Harry Potter"
-  },
-  {
-    "solution": ["🦁","👑","🐾"],
+    "title_es": "E.T., el extraterrestre",
+    "title_en": "E.T. the Extra-Terrestrial",
     "difficulty": "easy",
-    "title": "El Rey León"
+    "solution": ["👦","🌌","❤️"]
   },
   {
-    "solution": ["🚢","🧊","❤️"],
-    "difficulty": "medium",
-    "title": "Titanic"
-  },
-  {
-    "solution": ["🧞‍♂️","💡","🕌"],
-    "difficulty": "medium",
-    "title": "Aladdin"
-  },
-  {
-    "solution": ["👨‍🚀","🌕","🚀"],
-    "difficulty": "hard",
-    "title": "Apollo 13"
-  },
-  {
-    "solution": ["🦸‍♂️","🕷️","🦇"],
-    "difficulty": "medium",
-    "title": "Spider-Man"
-  },
-  {
-    "solution": ["🐵","🌴","👦"],
+    "title_es": "El Rey León",
+    "title_en": "The Lion King",
     "difficulty": "easy",
-    "title": "El Planeta de los Simios"
+    "solution": ["🦁","👑","🌴"]
+  },
+  {
+    "title_es": "Regreso al futuro",
+    "title_en": "Back to the Future",
+    "difficulty": "medium",
+    "solution": ["🚗","💡","🌌"]
+  },
+  {
+    "title_es": "Titanic",
+    "title_en": "Titanic",
+    "difficulty": "easy",
+    "solution": ["🚢","❤️","🌊"]
+  },
+  {
+    "title_es": "Blade Runner",
+    "title_en": "Blade Runner",
+    "difficulty": "medium",
+    "solution": ["🤖","🌌","🔫"]
+  },
+  {
+    "title_es": "La princesa prometida",
+    "title_en": "The Princess Bride",
+    "difficulty": "medium",
+    "solution": ["👸","🏰","❤️"]
+  },
+  {
+    "title_es": "Forrest Gump",
+    "title_en": "Forrest Gump",
+    "difficulty": "medium",
+    "solution": ["👦","💡","❤️"]
+  },
+  {
+    "title_es": "El mago de Oz",
+    "title_en": "The Wizard of Oz",
+    "difficulty": "easy",
+    "solution": ["🧙‍♂️","🏰","🌴"]
+  },
+  {
+    "title_es": "Wall·E",
+    "title_en": "WALL·E",
+    "difficulty": "easy",
+    "solution": ["🤖","🌌","❤️"]
   }
 ]
