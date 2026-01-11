@@ -11,6 +11,12 @@ const ICONS = [
   "🐵","🌴","👦"
 ];
 
+const DIFFICULTY_MAP = {
+  easy: "Fácil",
+  medium: "Media",
+  hard: "Difícil"
+};
+
 // ======================
 // DÍA ACTIVO (FIJO)
 // ======================
@@ -162,7 +168,7 @@ function submitGuess() {
 
   if (guess.join("") === PUZZLE.solution.join("")) {
     finished = true;
-    status.textContent = "¡Correcto! 🎉";
+    status.textContent = `¡Correcto! 🎉 Solución: ${PUZZLE.solution.join(" ")}`;
     saveState();
     return;
   }
@@ -174,7 +180,7 @@ function submitGuess() {
 
   if (currentRow >= MAX_ATTEMPTS) {
     finished = true;
-    status.textContent = "Fin del juego";
+    status.textContent = `Fin del juego. Solución: ${PUZZLE.solution.join(" ")}`;
     saveState();
   }
 }
@@ -210,9 +216,9 @@ async function loadPuzzle() {
   const index = new Date().getDate() % puzzles.length;
   PUZZLE = puzzles[index];
 
-  titleEl.textContent = PUZZLE.title;
-  diffEl.textContent = `Dificultad: ${PUZZLE.difficulty}`;
-
+  titleEl.textContent = `${PUZZLE.title_es} / ${PUZZLE.title_en}`;
+  diffEl.textContent = `Dificultad: ${DIFFICULTY_MAP[PUZZLE.difficulty]}`;
+  
   initBoard();
   initKeyboard();
   loadState();
