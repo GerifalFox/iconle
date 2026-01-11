@@ -1,134 +1,183 @@
+/* ======================
+   RESET
+====================== */
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #121213;
-  color: #ffffff;
   margin: 0;
   padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #121213;
+  color: #ffffff;
   text-align: center;
 }
 
+/* ======================
+   HEADER
+====================== */
+
 header {
-  padding: 16px 8px 8px;
+  padding: 16px 12px 8px;
 }
 
 h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.2rem;
+  letter-spacing: 0.05em;
 }
 
 .subtitle {
+  margin: 6px 0 0;
+  font-size: 0.95rem;
   color: #a1a1a1;
-  margin: 4px 0 0;
 }
 
+/* ======================
+   INFO DIARIA
+====================== */
+
 .daily-info {
-  margin: 16px 0 12px;
+  margin: 14px 0 16px;
 }
 
 .daily-title {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   font-weight: 600;
 }
 
 .daily-difficulty {
-  font-size: 0.9rem;
-  color: #a1a1a1;
   margin-top: 4px;
+  font-size: 0.85rem;
+  color: #a1a1a1;
 }
+
+/* ======================
+   TABLERO
+====================== */
 
 .board {
   display: grid;
-  grid-template-rows: repeat(6, 1fr);
-  gap: 6px;
-  width: max-content;
-  margin: 0 auto;
+  grid-template-rows: repeat(6, auto);
+  gap: 10px;
+  margin: 0 auto 14px;
+  width: fit-content;
 }
 
 .row {
   display: grid;
-  grid-template-columns: repeat(3, 56px);
-  gap: 6px;
+  grid-template-columns: repeat(3, 82px);
+  gap: 10px;
 }
 
+/* 🔑 ESTÉTICA ORIGINAL RESTAURADA */
 .cell {
-  height: 64px;
+  width: 82px;
+  height: 54px;
+  border: 2px solid #3a3a3c;
   border-radius: 6px;
-  background: var(--empty);
+  background-color: #121213;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
+
+  font-size: 1.9rem;
+  line-height: 1;
 }
 
+/* ======================
+   COLORES DE CORRECCIÓN
+====================== */
+
 .cell.green {
-  background: #538d4e;
+  background-color: #538d4e;
   border-color: #538d4e;
 }
 
 .cell.yellow {
-  background: #b59f3b;
+  background-color: #b59f3b;
   border-color: #b59f3b;
 }
 
 .cell.gray {
-  background: #3a3a3c;
+  background-color: #3a3a3c;
   border-color: #3a3a3c;
 }
 
+/* ======================
+   CONTROLES
+====================== */
+
 .controls {
   display: flex;
-  gap: 8px;
-  width: 180px;
-  margin: 14px auto;
+  gap: 10px;
+  width: 220px;
+  margin: 16px auto 18px;
 }
 
 .controls button {
   flex: 1;
   padding: 10px 0;
   font-size: 1rem;
-  border-radius: 6px;
+  font-weight: 600;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
 }
 
 #deleteBtn {
-  background: #565758;
-  color: white;
+  background-color: #565758;
+  color: #ffffff;
 }
 
 #checkBtn {
-  background: #538d4e;
-  color: white;
+  background-color: #538d4e;
+  color: #ffffff;
 }
 
 #checkBtn:disabled {
-  opacity: 0.4;
+  opacity: 0.45;
   cursor: not-allowed;
 }
 
+/* ======================
+   TECLADO DE ICONOS
+====================== */
+
 .keyboard {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
-  gap: 6px;
+  grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+  gap: 8px;
   max-width: 420px;
-  margin: 0 auto 16px;
+  margin: 0 auto 20px;
+  padding: 0 10px;
 }
 
 .key {
-  background: #818384;
+  background-color: #818384;
   border-radius: 6px;
   padding: 10px 0;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   cursor: pointer;
   user-select: none;
 }
 
+.key:active {
+  transform: scale(0.95);
+}
+
+/* ======================
+   FOOTER / STATUS
+====================== */
+
 footer {
-  min-height: 24px;
-  margin-bottom: 16px;
-  color: #ffffff;
+  min-height: 28px;
+  margin-bottom: 18px;
+}
+
+#status {
+  font-size: 0.95rem;
 }
