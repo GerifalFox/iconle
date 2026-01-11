@@ -2,31 +2,36 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ICONLE</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="container">
-    <header>
-      <h1>ICONLE</h1>
-      <p class="subtitle">Una película. Tres iconos. Un día.</p>
-      <div id="difficulty" class="difficulty">Dificultad: 🟡 Media</div>
-    </header>
 
+  <header>
+    <h1>ICONLE</h1>
+    <p class="subtitle">Adivina la película usando iconos</p>
+  </header>
+
+  <section class="daily-info">
+    <div id="daily-title" class="daily-title"></div>
+    <div id="daily-difficulty" class="daily-difficulty"></div>
+  </section>
+
+  <main>
     <section id="board" class="board"></section>
 
-    <section id="keyboard" class="keyboard"></section>
-
-      <div class="controls">
+    <div class="controls">
       <button id="deleteBtn">Borrar</button>
       <button id="checkBtn">Comprobar</button>
-</div>
+    </div>
 
-<footer>
-  <p id="status"></p>
-</footer>
+    <section id="keyboard" class="keyboard"></section>
   </main>
+
+  <footer>
+    <p id="status"></p>
+  </footer>
 
   <script src="app.js"></script>
 </body>
