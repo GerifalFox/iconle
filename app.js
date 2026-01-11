@@ -3,12 +3,12 @@
 // ======================
 
 const MAX_ATTEMPTS = 6;
+
 const ICONS = [
-  "🦖","🏝️","🚗","🚢","💔","🌊",
-  "🤖","⚡","🌌","👻","❤️","🔫",
-  "👸","🐸","💋","🧙‍♂️","🪄","🏰",
-  "🦁","👑","🐾","🚢","🧊","🧞‍♂️","💡","🕌",
-  "👨‍🚀","🌕","🦸‍♂️","🕷️","🦇","🐵","🌴","👦"
+  "🦖","🏝️","🚗","🚢","🌊","🤖","🌌","👻","❤️","🔫",
+  "👸","🐸","💋","🧙‍♂️","🏰","🦁","👑","🐾","🧊",
+  "🧞‍♂️","💡","🕌","👨‍🚀","🌕","🦸‍♂️","🕷️","🦇",
+  "🐵","🌴","👦"
 ];
 
 // ======================
@@ -16,11 +16,8 @@ const ICONS = [
 // ======================
 
 function getTodayKey() {
-  const now = new Date();
-  const yyyy = now.getFullYear();
-  const mm = String(now.getMonth() + 1).padStart(2, "0");
-  const dd = String(now.getDate()).padStart(2, "0");
-  return `${yyyy}-${mm}-${dd}`;
+  const d = new Date();
+  return d.toISOString().split("T")[0];
 }
 
 let DAY_KEY = localStorage.getItem("iconle-current-day");
@@ -45,8 +42,8 @@ const STORAGE_KEY = `iconle-${DAY_KEY}`;
 
 let currentRow = 0;
 let currentGuess = [];
-let finished = false;
 let guesses = [];
+let finished = false;
 let PUZZLE = null;
 
 // ======================
@@ -58,9 +55,11 @@ const keyboard = document.getElementById("keyboard");
 const status = document.getElementById("status");
 const checkBtn = document.getElementById("checkBtn");
 const deleteBtn = document.getElementById("deleteBtn");
+const titleEl = document.getElementById("daily-title");
+const diffEl = document.getElementById("daily-difficulty");
 
 // ======================
-// INIT
+// INIT UI
 // ======================
 
 function initBoard() {
@@ -93,28 +92,23 @@ function initKeyboard() {
 // ======================
 
 function onKey(icon) {
-  if (finished) return;
-  if (currentGuess.length >= 3) return;
-
+  if (finished || currentGuess.length >= 3) return;
   currentGuess.push(icon);
   renderCurrentRow();
   updateButtons();
 }
 
-deleteBtn.addEventListener("click", () => {
-  if (finished) return;
-  if (currentGuess.length === 0) return;
-
+deleteBtn.onclick = () => {
+  if (finished || currentGuess.length === 0) return;
   currentGuess.pop();
   renderCurrentRow();
   updateButtons();
-});
+};
 
-checkBtn.addEventListener("click", () => {
-  if (finished) return;
-  if (currentGuess.length !== 3) return;
+checkBtn.onclick = () => {
+  if (finished || currentGuess.length !== 3) return;
   submitGuess();
-});
+};
 
 // ======================
 // RENDER
@@ -135,7 +129,6 @@ function renderGuessResult(guess, rowIndex) {
   const row = board.children[rowIndex];
   const solutionCopy = [...PUZZLE.solution];
 
-  // verdes
   guess.forEach((icon, i) => {
     const cell = row.children[i];
     cell.textContent = icon;
@@ -145,15 +138,13 @@ function renderGuessResult(guess, rowIndex) {
     }
   });
 
-  // amarillos / grises
   guess.forEach((icon, i) => {
     const cell = row.children[i];
     if (cell.classList.contains("green")) return;
-
-    const index = solutionCopy.indexOf(icon);
-    if (index !== -1) {
+    const idx = solutionCopy.indexOf(icon);
+    if (idx !== -1) {
       cell.classList.add("yellow");
-      solutionCopy[index] = null;
+      solutionCopy[idx] = null;
     } else {
       cell.classList.add("gray");
     }
@@ -161,18 +152,17 @@ function renderGuessResult(guess, rowIndex) {
 }
 
 // ======================
-// GAME LOGIC
+// GAME
 // ======================
 
 function submitGuess() {
   const guess = [...currentGuess];
   guesses.push(guess);
-
   renderGuessResult(guess, currentRow);
 
   if (guess.join("") === PUZZLE.solution.join("")) {
     finished = true;
-    status.textContent = `¡Correcto! 🎉 — ${PUZZLE.title}`;
+    status.textContent = "¡Correcto! 🎉";
     saveState();
     return;
   }
@@ -184,74 +174,49 @@ function submitGuess() {
 
   if (currentRow >= MAX_ATTEMPTS) {
     finished = true;
-    status.textContent =
-      `Fin. La película era ${PUZZLE.title} ${PUZZLE.solution.join("")}`;
+    status.textContent = "Fin del juego";
     saveState();
   }
 }
 
 // ======================
-// PERSISTENCIA
+// STORAGE
 // ======================
 
 function saveState() {
   localStorage.setItem(
     STORAGE_KEY,
-    JSON.stringify({
-      currentRow,
-      guesses,
-      finished
-    })
+    JSON.stringify({ currentRow, guesses, finished })
   );
 }
 
 function loadState() {
   const data = localStorage.getItem(STORAGE_KEY);
   if (!data) return;
-
   const state = JSON.parse(data);
   currentRow = state.currentRow;
   guesses = state.guesses;
   finished = state.finished;
-
-  guesses.forEach((guess, index) => {
-    renderGuessResult(guess, index);
-  });
-
-  if (finished) {
-    if (guesses.some(g => g.join("") === PUZZLE.solution.join(""))) {
-      status.textContent = `¡Correcto! 🎉 — ${PUZZLE.title}`;
-    } else {
-      status.textContent =
-        `Fin. La película era ${PUZZLE.title} ${PUZZLE.solution.join("")}`;
-    }
-  }
+  guesses.forEach(renderGuessResult);
 }
 
 // ======================
-// CARGA DEL JSON
+// LOAD PUZZLE
 // ======================
 
-async function loadPuzzleJSON() {
-  try {
-    const res = await fetch("puzzles.json");
-    const puzzles = await res.json();
+async function loadPuzzle() {
+  const res = await fetch("puzzles.json");
+  const puzzles = await res.json();
+  const index = new Date().getDate() % puzzles.length;
+  PUZZLE = puzzles[index];
 
-    // Elegir puzzle según día (mod 10 para 10 puzzles)
-    const dayIndex = new Date().getDate() % puzzles.length;
-    PUZZLE = puzzles[dayIndex];
+  titleEl.textContent = PUZZLE.title;
+  diffEl.textContent = `Dificultad: ${PUZZLE.difficulty}`;
 
-    initBoard();
-    initKeyboard();
-    loadState();
-    updateButtons();
-  } catch (err) {
-    console.error("Error cargando puzzles.json", err);
-  }
+  initBoard();
+  initKeyboard();
+  loadState();
+  updateButtons();
 }
 
-// ======================
-// START
-// ======================
-
-loadPuzzleJSON();
+loadPuzzle();
