@@ -77,6 +77,12 @@ const checkBtn = document.getElementById("checkBtn");
 const deleteBtn = document.getElementById("deleteBtn");
 const titleEl = document.getElementById("daily-title");
 const diffEl = document.getElementById("daily-difficulty");
+const shareBtn = document.getElementById("shareBtn");
+
+const statPlayed = document.getElementById("stat-played");
+const statWins = document.getElementById("stat-wins");
+const statStreak = document.getElementById("stat-streak");
+const statMaxStreak = document.getElementById("stat-max-streak");
 
 // ======================
 // INIT UI
@@ -183,8 +189,17 @@ function submitGuess() {
   if (guess.join("") === PUZZLE.solution.join("")) {
     finished = true;
     status.textContent = `¡Correcto! 🎉 Solución: ${PUZZLE.solution.join(" ")}`;
+
+    const stats = getStats();
+    stats.played++;
+    stats.wins++;
+    stats.currentStreak++;
+    stats.maxStreak = Math.max(stats.maxStreak, stats.currentStreak);
+    saveStats(stats);
+
     saveState();
-    return;
+    shareBtn.disabled = false;
+  return;
   }
 
   currentRow++;
@@ -195,7 +210,14 @@ function submitGuess() {
   if (currentRow >= MAX_ATTEMPTS) {
     finished = true;
     status.textContent = `Fin del juego. Solución: ${PUZZLE.solution.join(" ")}`;
+
+    const stats = getStats();
+    stats.played++;
+    stats.currentStreak = 0;
+    saveStats(stats);
+
     saveState();
+    shareBtn.disabled = false;
   }
 }
 
@@ -220,6 +242,71 @@ function loadState() {
   guesses.forEach(renderGuessResult);
 }
 
+
+
+// ======================
+// STATS
+// ======================
+
+const STATS_KEY = "iconle-stats";
+
+function getStats() {
+  return JSON.parse(localStorage.getItem(STATS_KEY)) || {
+    played: 0,
+    wins: 0,
+    currentStreak: 0,
+    maxStreak: 0
+  };
+}
+
+function saveStats(stats) {
+  localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+  renderStats();
+}
+
+function renderStats() {
+  const stats = getStats();
+  statPlayed.textContent = stats.played;
+  statWins.textContent = stats.wins;
+  statStreak.textContent = stats.currentStreak;
+  statMaxStreak.textContent = stats.maxStreak;
+}
+
+
+// ======================
+// SHARE RESULTS
+// ======================
+
+shareBtn.onclick = () => {
+  if (!finished) return;
+
+  const day = DAY_KEY;
+  const attemptText = finished && currentRow < MAX_ATTEMPTS
+    ? `${currentRow + 1}/${MAX_ATTEMPTS}`
+    : `X/${MAX_ATTEMPTS}`;
+
+  const grid = guesses.map(guess => {
+    return guess.map((icon, i) => {
+      if (icon === PUZZLE.solution[i]) return "🟩";
+      if (PUZZLE.solution.includes(icon)) return "🟨";
+      return "⬛";
+    }).join("");
+  }).join("\n");
+
+  const text =
+`ICONLE ${day}
+${attemptText}
+
+${grid}
+
+${PUZZLE.title_es} / ${PUZZLE.title_en}
+https://iconle.com`;
+
+  navigator.clipboard.writeText(text);
+  status.textContent = "Resultado copiado al portapapeles 📋";
+};
+
+
 // ======================
 // LOAD PUZZLE
 // ======================
@@ -237,6 +324,8 @@ async function loadPuzzle() {
   initKeyboard();
   loadState();
   updateButtons();
+  renderStats();
+  shareBtn.disabled = !finished;
 }
 
 loadPuzzle();
