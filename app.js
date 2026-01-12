@@ -281,9 +281,10 @@ shareBtn.onclick = () => {
   if (!finished) return;
 
   const day = DAY_KEY;
-  const attemptText = finished && currentRow < MAX_ATTEMPTS
-    ? `${currentRow + 1}/${MAX_ATTEMPTS}`
-    : `X/${MAX_ATTEMPTS}`;
+  const attemptText =
+    currentRow < MAX_ATTEMPTS
+      ? `${currentRow + 1}/${MAX_ATTEMPTS}`
+      : `X/${MAX_ATTEMPTS}`;
 
   const grid = guesses.map(guess => {
     return guess.map((icon, i) => {
@@ -302,9 +303,30 @@ ${grid}
 ${PUZZLE.title_es} / ${PUZZLE.title_en}
 https://iconle.com`;
 
-  navigator.clipboard.writeText(text);
-  status.textContent = "Resultado copiado al portapapeles 📋";
+  // MÉTODO MODERNO
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => {
+      status.textContent = "Resultado copiado al portapapeles 📋";
+    }).catch(() => {
+      fallbackCopy(text);
+    });
+  } else {
+    fallbackCopy(text);
+  }
 };
+
+function fallbackCopy(text) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textarea);
+  status.textContent = "Resultado copiado al portapapeles 📋";
+}
+
 
 
 // ======================
