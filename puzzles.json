@@ -1,62 +1,402 @@
 [
   {
-    "title_es": "Parque Jurásico",
-    "title_en": "Jurassic Park",
-    "difficulty": "easy",
-    "solution": ["🦖","🏝️","🚗"]
+    "id": 1,
+    "ref": "20260113",
+    "title_es": "WALL·E",
+    "title_en": "WALL·E",
+    "difficulty": "media",
+    "solution": ["🤖", "🌿", "❤️"]
   },
   {
-    "title_es": "E.T., el extraterrestre",
-    "title_en": "E.T. the Extra-Terrestrial",
-    "difficulty": "easy",
-    "solution": ["👦","🌌","❤️"]
-  },
-  {
+    "id": 2,
+    "ref": "20260114",
     "title_es": "El Rey León",
     "title_en": "The Lion King",
-    "difficulty": "easy",
-    "solution": ["🦁","👑","🌴"]
+    "difficulty": "facil",
+    "solution": ["🦁", "👑", "🌌"]
   },
   {
-    "title_es": "Regreso al futuro",
-    "title_en": "Back to the Future",
-    "difficulty": "medium",
-    "solution": ["🚗","💡","🌌"]
+    "id": 3,
+    "ref": "20260115",
+    "title_es": "E.T., el extraterrestre",
+    "title_en": "E.T. the Extra-Terrestrial",
+    "difficulty": "facil",
+    "solution": ["🚲", "🌕", "🌌"]
   },
   {
-    "title_es": "Titanic",
-    "title_en": "Titanic",
-    "difficulty": "easy",
-    "solution": ["🚢","❤️","🌊"]
+    "id": 4,
+    "ref": "20260116",
+    "title_es": "Toy Story",
+    "title_en": "Toy Story",
+    "difficulty": "facil",
+    "solution": ["🦸‍♂️", "🚀", "📦"]
   },
   {
-    "title_es": "Blade Runner",
-    "title_en": "Blade Runner",
-    "difficulty": "medium",
-    "solution": ["🤖","🌌","🔫"]
+    "id": 5,
+    "ref": "20260117",
+    "title_es": "Parque Jurásico",
+    "title_en": "Jurassic Park",
+    "difficulty": "media",
+    "solution": ["🦖", "🏝️", "🚗"]
   },
   {
-    "title_es": "La princesa prometida",
-    "title_en": "The Princess Bride",
-    "difficulty": "medium",
-    "solution": ["👸","🏰","❤️"]
+    "id": 6,
+    "ref": "20260118",
+    "title_es": "Up",
+    "title_en": "Up",
+    "difficulty": "facil",
+    "solution": ["🏠", "🌌", "👦"]
   },
   {
+    "id": 7,
+    "ref": "20260119",
     "title_es": "Forrest Gump",
     "title_en": "Forrest Gump",
-    "difficulty": "medium",
-    "solution": ["👦","💡","❤️"]
+    "difficulty": "media",
+    "solution": ["👦", "🕒", "❤️"]
   },
   {
-    "title_es": "El mago de Oz",
-    "title_en": "The Wizard of Oz",
-    "difficulty": "easy",
-    "solution": ["🧙‍♂️","🏰","🌴"]
+    "id": 8,
+    "ref": "20260120",
+    "title_es": "Regreso al futuro",
+    "title_en": "Back to the Future",
+    "difficulty": "media",
+    "solution": ["🚗", "🕒", "⚡"]
   },
   {
-    "title_es": "Wall·E",
-    "title_en": "WALL·E",
-    "difficulty": "easy",
-    "solution": ["🤖","🌌","❤️"]
+    "id": 9,
+    "ref": "20260121",
+    "title_es": "Buscando a Nemo",
+    "title_en": "Finding Nemo",
+    "difficulty": "facil",
+    "solution": ["🐟", "🌊", "👦"]
+  },
+  {
+    "id": 10,
+    "ref": "20260122",
+    "title_es": "Matrix",
+    "title_en": "The Matrix",
+    "difficulty": "media",
+    "solution": ["⚡", "🏙️", "📞"]
+  },
+  {
+    "id": 11,
+    "ref": "20260123",
+    "title_es": "Titanic",
+    "title_en": "Titanic",
+    "difficulty": "facil",
+    "solution": ["🚢", "❤️", "🌊"]
+  },
+  {
+    "id": 12,
+    "ref": "20260124",
+    "title_es": "Coco",
+    "title_en": "Coco",
+    "difficulty": "facil",
+    "solution": ["🎵", "💀", "👦"]
+  },
+  {
+    "id": 13,
+    "ref": "20260125",
+    "title_es": "Los Increíbles",
+    "title_en": "The Incredibles",
+    "difficulty": "facil",
+    "solution": ["🦸‍♂️", "⚡", "🏙️"]
+  },
+  {
+    "id": 14,
+    "ref": "20260126",
+    "title_es": "Harry Potter",
+    "title_en": "Harry Potter",
+    "difficulty": "media",
+    "solution": ["🧙‍♂️", "🎩", "🏰"]
+  },
+  {
+    "id": 15,
+    "ref": "20260127",
+    "title_es": "El viaje de Chihiro",
+    "title_en": "Spirited Away",
+    "difficulty": "media",
+    "solution": ["👦", "👻", "🔥"]
+  },
+  {
+    "id": 16,
+    "ref": "20260128",
+    "title_es": "Tiburón",
+    "title_en": "Jaws",
+    "difficulty": "facil",
+    "solution": ["🦈", "🚢", "🌊"]
+  },
+  {
+    "id": 17,
+    "ref": "20260129",
+    "title_es": "Indiana Jones: En busca del arca perdida",
+    "title_en": "Raiders of the Lost Ark",
+    "difficulty": "media",
+    "solution": ["🎩", "🐍", "💎"]
+  },
+  {
+    "id": 18,
+    "ref": "20260130",
+    "title_es": "Psicosis",
+    "title_en": "Psycho",
+    "difficulty": "dificil",
+    "solution": ["🏠", "⚔️", "💀"]
+  },
+  {
+    "id": 19,
+    "ref": "20260131",
+    "title_es": "Aladdín",
+    "title_en": "Aladdin",
+    "difficulty": "facil",
+    "solution": ["🕌", "💎", "🐵"]
+  },
+  {
+    "id": 20,
+    "ref": "20260201",
+    "title_es": "King Kong",
+    "title_en": "King Kong",
+    "difficulty": "facil",
+    "solution": ["🐵", "🏙️", "✈️"]
+  },
+  {
+    "id": 21,
+    "ref": "20260202",
+    "title_es": "Batman",
+    "title_en": "Batman",
+    "difficulty": "media",
+    "solution": ["🦇", "🏙️", "🚗"]
+  },
+  {
+    "id": 22,
+    "ref": "20260203",
+    "title_es": "Frozen",
+    "title_en": "Frozen",
+    "difficulty": "facil",
+    "solution": ["👸", "🧊", "🏰"]
+  },
+  {
+    "id": 23,
+    "ref": "20260204",
+    "title_es": "La Sirenita",
+    "title_en": "The Little Mermaid",
+    "difficulty": "facil",
+    "solution": ["👸", "🐟", "🌊"]
+  },
+  {
+    "id": 24,
+    "ref": "20260205",
+    "title_es": "Ratatouille",
+    "title_en": "Ratatouille",
+    "difficulty": "media",
+    "solution": ["🐀", "🎩", "🎵"]
+  },
+  {
+    "id": 25,
+    "ref": "20260206",
+    "title_es": "Spider-Man",
+    "title_en": "Spider-Man",
+    "difficulty": "facil",
+    "solution": ["🕷️", "🏙️", "🦸‍♂️"]
+  },
+  {
+    "id": 26,
+    "ref": "20260207",
+    "title_es": "Alien, el octavo pasajero",
+    "title_en": "Alien",
+    "difficulty": "dificil",
+    "solution": ["🚀", "🌌", "💀"]
+  },
+  {
+    "id": 27,
+    "ref": "20260208",
+    "title_es": "Piratas del Caribe",
+    "title_en": "Pirates of the Caribbean",
+    "difficulty": "facil",
+    "solution": ["🚢", "💀", "🏝️"]
+  },
+  {
+    "id": 28,
+    "ref": "20260209",
+    "title_es": "Mulan",
+    "title_en": "Mulan",
+    "difficulty": "media",
+    "solution": ["👸", "⚔️", "🏰"]
+  },
+  {
+    "id": 29,
+    "ref": "20260210",
+    "title_es": "Vaiana",
+    "title_en": "Moana",
+    "difficulty": "facil",
+    "solution": ["👸", "🌊", "🏝️"]
+  },
+  {
+    "id": 30,
+    "ref": "20260211",
+    "title_es": "Top Gun",
+    "title_en": "Top Gun",
+    "difficulty": "media",
+    "solution": ["✈️", "⚡", "🌊"]
+  },
+  {
+    "id": 31,
+    "ref": "20260212",
+    "title_es": "Tarzán",
+    "title_en": "Tarzan",
+    "difficulty": "facil",
+    "solution": ["👦", "🌿", "🐵"]
+  },
+  {
+    "id": 32,
+    "ref": "20260213",
+    "title_es": "Pulp Fiction",
+    "title_en": "Pulp Fiction",
+    "difficulty": "dificil",
+    "solution": ["🔫", "📦", "🎭"]
+  },
+  {
+    "id": 33,
+    "ref": "20260214",
+    "title_es": "Romeo y Julieta",
+    "title_en": "Romeo + Juliet",
+    "difficulty": "facil",
+    "solution": ["❤️", "⚔️", "💀"]
+  },
+  {
+    "id": 34,
+    "ref": "20260215",
+    "title_es": "It",
+    "title_en": "It",
+    "difficulty": "media",
+    "solution": ["👦", "🏠", "💀"]
+  },
+  {
+    "id": 35,
+    "ref": "20260216",
+    "title_es": "SAW",
+    "title_en": "SAW",
+    "difficulty": "media",
+    "solution": ["🚲", "🕒", "💀"]
+  },
+  {
+    "id": 36,
+    "ref": "20260217",
+    "title_es": "Mad Max",
+    "title_en": "Mad Max",
+    "difficulty": "media",
+    "solution": ["🚗", "🏜️", "🔥"]
+  },
+  {
+    "id": 37,
+    "ref": "20260218",
+    "title_es": "Origen",
+    "title_en": "Inception",
+    "difficulty": "dificil",
+    "solution": ["🏙️", "💤", "🕒"]
+  },
+  {
+    "id": 38,
+    "ref": "20260219",
+    "title_es": "Náufrago",
+    "title_en": "Cast Away",
+    "difficulty": "facil",
+    "solution": ["🏝️", "📦", "🌊"]
+  },
+  {
+    "id": 39,
+    "ref": "20260220",
+    "title_es": "101 Dálmatas",
+    "title_en": "101 Dalmatians",
+    "difficulty": "media",
+    "solution": ["🐾", "🚗", "🏠"]
+  },
+  {
+    "id": 40,
+    "ref": "20260221",
+    "title_es": "Frankenstein",
+    "title_en": "Frankenstein",
+    "difficulty": "media",
+    "solution": ["⚡", "💀", "🔥"]
+  },
+  {
+    "id": 41,
+    "ref": "20260222",
+    "title_es": "El Exorcista",
+    "title_en": "The Exorcist",
+    "difficulty": "media",
+    "solution": ["👻", "🏠", "💤"]
+  },
+  {
+    "id": 42,
+    "ref": "20260223",
+    "title_es": "2001: Odisea del espacio",
+    "title_en": "2001: A Space Odyssey",
+    "difficulty": "dificil",
+    "solution": ["🐵", "🚀", "🤖"]
+  },
+  {
+    "id": 43,
+    "ref": "20260224",
+    "title_es": "Avatar",
+    "title_en": "Avatar",
+    "difficulty": "media",
+    "solution": ["🌿", "🌌", "🐾"]
+  },
+  {
+    "id": 44,
+    "ref": "20260225",
+    "title_es": "Shrek",
+    "title_en": "Shrek",
+    "difficulty": "facil",
+    "solution": ["👸", "🏰", "🌿"]
+  },
+  {
+    "id": 45,
+    "ref": "20260226",
+    "title_es": "Ghost",
+    "title_en": "Ghost",
+    "difficulty": "facil",
+    "solution": ["❤️", "👻", "🎭"]
+  },
+  {
+    "id": 46,
+    "ref": "20260227",
+    "title_es": "Karate Kid",
+    "title_en": "The Karate Kid",
+    "difficulty": "media",
+    "solution": ["👦", "🌞", "🔝"]
+  },
+  {
+    "id": 47,
+    "ref": "20260228",
+    "title_es": "La vida de Pi",
+    "title_en": "Life of Pi",
+    "difficulty": "media",
+    "solution": ["🚢", "🦁", "🌊"]
+  },
+  {
+    "id": 48,
+    "ref": "20260301",
+    "title_es": "El libro de la selva",
+    "title_en": "The Jungle Book",
+    "difficulty": "facil",
+    "solution": ["👦", "🦁", "🐍"]
+  },
+  {
+    "id": 49,
+    "ref": "20260302",
+    "title_es": "Braveheart",
+    "title_en": "Braveheart",
+    "difficulty": "media",
+    "solution": ["⚔️", "👑", "🔥"]
+  },
+  {
+    "id": 50,
+    "ref": "20260303",
+    "title_es": "Gladiator",
+    "title_en": "Gladiator",
+    "difficulty": "media",
+    "solution": ["⚔️", "🦁", "👑"]
   }
 ]
