@@ -188,7 +188,7 @@ function submitGuess() {
 
   if (guess.join("") === PUZZLE.solution.join("")) {
     finished = true;
-    status.textContent = `¡Correcto! 🎉 Solución: ${PUZZLE.solution.join(" ")}`;
+    status.textContent = `¡Correcto! / Correct! 🎉 Solución / Solution: ${PUZZLE.solution.join(" ")}`;
 
     const stats = getStats();
     stats.played++;
@@ -209,7 +209,7 @@ function submitGuess() {
 
   if (currentRow >= MAX_ATTEMPTS) {
     finished = true;
-    status.textContent = `Fin del juego. Solución: ${PUZZLE.solution.join(" ")}`;
+    status.textContent = `Fin del juego / End of the game. Solución / Solution: ${PUZZLE.solution.join(" ")}`;
 
     const stats = getStats();
     stats.played++;
