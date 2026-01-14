@@ -1,12 +1,12 @@
+document.addEventListener("DOMContentLoaded", () => {
+
 // ======================
 // CONFIGURACIÓN
 // ======================
 
 const MAX_ATTEMPTS = 6;
-
-// 🔹 FECHA INICIAL DEL JUEGO (HOY = 14 ENERO 2026)
 const START_DATE = new Date("2026-01-14T00:00:00");
-START_DATE.setHours(0, 0, 0, 0);
+START_DATE.setHours(0,0,0,0);
 
 const ICONS = [
   "👦","🧔","👩","👸","🧙‍♂️","🦸‍♂️","👻",
@@ -24,16 +24,16 @@ const DIFFICULTY_MAP = {
 };
 
 // ======================
-// CÁLCULO DE DÍA ACTIVO
+// DÍA ACTIVO
 // ======================
 
 function getDayIndex() {
   const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  return Math.floor((today - START_DATE) / (1000 * 60 * 60 * 24));
+  today.setHours(0,0,0,0);
+  return Math.floor((today - START_DATE) / 86400000);
 }
 
-const DAY_INDEX = getDayIndex();
+const DAY_INDEX = Math.max(0, getDayIndex());
 const STORAGE_KEY = `iconle-day-${DAY_INDEX}`;
 
 // ======================
@@ -148,12 +148,8 @@ function renderGuessResult(guess, rowIndex) {
     const cell = row.children[i];
     if (cell.classList.contains("green")) return;
     const idx = solutionCopy.indexOf(icon);
-    if (idx !== -1) {
-      cell.classList.add("yellow");
-      solutionCopy[idx] = null;
-    } else {
-      cell.classList.add("gray");
-    }
+    cell.classList.add(idx !== -1 ? "yellow" : "gray");
+    if (idx !== -1) solutionCopy[idx] = null;
   });
 }
 
@@ -168,7 +164,7 @@ function submitGuess() {
 
   if (guess.join("") === PUZZLE.solution.join("")) {
     finished = true;
-    status.textContent = `¡Correcto! / Correct! 🎉 Solución / Solution: ${PUZZLE.solution.join(" ")}`;
+    status.textContent = `¡Correcto! 🎉`;
     updateStats(true);
     saveState();
     shareBtn.disabled = false;
@@ -182,7 +178,7 @@ function submitGuess() {
 
   if (currentRow >= MAX_ATTEMPTS) {
     finished = true;
-    status.textContent = `Fin del juego / End of the game. Solución / Solution: ${PUZZLE.solution.join(" ")}`;
+    status.textContent = `Fin del juego. Solución: ${PUZZLE.solution.join(" ")}`;
     updateStats(false);
     saveState();
     shareBtn.disabled = false;
@@ -194,18 +190,16 @@ function submitGuess() {
 // ======================
 
 function saveState() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({
-    currentRow, guesses, finished
-  }));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ currentRow, guesses, finished }));
 }
 
 function loadState() {
   const data = localStorage.getItem(STORAGE_KEY);
   if (!data) return;
-  const state = JSON.parse(data);
-  currentRow = state.currentRow;
-  guesses = state.guesses;
-  finished = state.finished;
+  const s = JSON.parse(data);
+  currentRow = s.currentRow;
+  guesses = s.guesses;
+  finished = s.finished;
   guesses.forEach(renderGuessResult);
 }
 
@@ -217,24 +211,21 @@ const STATS_KEY = "iconle-stats";
 
 function getStats() {
   return JSON.parse(localStorage.getItem(STATS_KEY)) || {
-    played: 0,
-    wins: 0,
-    currentStreak: 0,
-    maxStreak: 0
+    played: 0, wins: 0, currentStreak: 0, maxStreak: 0
   };
 }
 
 function updateStats(win) {
-  const stats = getStats();
-  stats.played++;
+  const s = getStats();
+  s.played++;
   if (win) {
-    stats.wins++;
-    stats.currentStreak++;
-    stats.maxStreak = Math.max(stats.maxStreak, stats.currentStreak);
+    s.wins++;
+    s.currentStreak++;
+    s.maxStreak = Math.max(s.maxStreak, s.currentStreak);
   } else {
-    stats.currentStreak = 0;
+    s.currentStreak = 0;
   }
-  localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+  localStorage.setItem(STATS_KEY, JSON.stringify(s));
   renderStats();
 }
 
@@ -247,38 +238,6 @@ function renderStats() {
 }
 
 // ======================
-// SHARE
-// ======================
-
-shareBtn.onclick = () => {
-  if (!finished) return;
-
-  const attempt =
-    currentRow < MAX_ATTEMPTS
-      ? `${currentRow + 1}/${MAX_ATTEMPTS}`
-      : `X/${MAX_ATTEMPTS}`;
-
-  const grid = guesses.map(g =>
-    g.map((icon, i) =>
-      icon === PUZZLE.solution[i] ? "🟩" :
-      PUZZLE.solution.includes(icon) ? "🟨" : "⬛"
-    ).join("")
-  ).join("\n");
-
-  const text =
-`ICONLE ${PUZZLE.ref}
-${attempt}
-
-${grid}
-
-${PUZZLE.title_es} / ${PUZZLE.title_en}
-https://iconle.com`;
-
-  navigator.clipboard.writeText(text);
-  status.textContent = "Resultado copiado 📋";
-};
-
-// ======================
 // LOAD PUZZLE
 // ======================
 
@@ -288,7 +247,7 @@ async function loadPuzzle() {
 
   PUZZLE = puzzles[DAY_INDEX];
   if (!PUZZLE) {
-    status.textContent = "Sin información disponible hoy. / Info not available today.";
+    status.textContent = "No hay acertijo disponible para hoy.";
     return;
   }
 
@@ -300,7 +259,8 @@ async function loadPuzzle() {
   loadState();
   renderStats();
   updateButtons();
-  shareBtn.disabled = !finished;
 }
 
 loadPuzzle();
+
+});
