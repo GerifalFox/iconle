@@ -4,26 +4,18 @@
 
 const MAX_ATTEMPTS = 6;
 
+// 🔹 FECHA INICIAL DEL JUEGO (HOY = 14 ENERO 2026)
+const START_DATE = new Date("2026-01-14T00:00:00");
+START_DATE.setHours(0, 0, 0, 0);
+
 const ICONS = [
-  // Personajes y Figuras (7) - Cubrimos todos los roles
-  "👦", "🧔", "👩", "👸", "🧙‍♂️", "🦸‍♂️", "👻",
-
-  // Animales (10) - Los más icónicos del cine
-  "🦖", "🦁", "🐵", "🦇", "🕷️", "🐺", "🐍", "🐟", "🦈", "🐀",
-
-  // Vehículos (6) - Esenciales para acción y viajes
-  "🚗", "🚢", "✈️", "🚀", "🚲", "🛸",
-
-  // Escenarios y Clima (9) - El "donde" ocurre la historia
-  "🏝️", "🏰", "🏜️", "🏙️", "🏠", "🌌", "🌲", "❄️", "🌋",
-
-  // Objetos y Cine (11) - Herramientas de trama
-  "🔫", "🎬", "🎩", "⚔️", "💎", "💰", "💍", "🍎", "💊", "📖", "📞",
-
-  // Conceptos y Abstractos (10) - El "tono" de la película
-  "❤️", "💀", "👑", "🌊", "🌕", "🌞", "⚡", "🔥", "🎵", "💤", "🎭"
+  "👦","🧔","👩","👸","🧙‍♂️","🦸‍♂️","👻",
+  "🦖","🦁","🐵","🦇","🕷️","🐺","🐍","🐟","🦈","🐀",
+  "🚗","🚢","✈️","🚀","🚲","🛸",
+  "🏝️","🏰","🏜️","🏙️","🏠","🌌","🌲","❄️","🌋",
+  "🔫","🎬","🎩","⚔️","💎","💰","💍","🍎","💊","📖","📞",
+  "❤️","💀","👑","🌊","🌕","🌞","⚡","🔥","🎵","💤","🎭"
 ];
-
 
 const DIFFICULTY_MAP = {
   easy: "Fácil",
@@ -32,29 +24,17 @@ const DIFFICULTY_MAP = {
 };
 
 // ======================
-// DÍA ACTIVO (FIJO)
+// CÁLCULO DE DÍA ACTIVO
 // ======================
 
-function getTodayKey() {
-  const d = new Date();
-  return d.toISOString().split("T")[0];
+function getDayIndex() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return Math.floor((today - START_DATE) / (1000 * 60 * 60 * 24));
 }
 
-let DAY_KEY = localStorage.getItem("iconle-current-day");
-const REAL_TODAY = getTodayKey();
-
-if (!DAY_KEY) {
-  DAY_KEY = REAL_TODAY;
-  localStorage.setItem("iconle-current-day", DAY_KEY);
-}
-
-if (DAY_KEY !== REAL_TODAY) {
-  localStorage.removeItem(`iconle-${DAY_KEY}`);
-  localStorage.setItem("iconle-current-day", REAL_TODAY);
-  location.reload();
-}
-
-const STORAGE_KEY = `iconle-${DAY_KEY}`;
+const DAY_INDEX = getDayIndex();
+const STORAGE_KEY = `iconle-day-${DAY_INDEX}`;
 
 // ======================
 // ESTADO
@@ -108,7 +88,7 @@ function initKeyboard() {
     const key = document.createElement("div");
     key.className = "key";
     key.textContent = icon;
-    key.addEventListener("click", () => onKey(icon));
+    key.onclick = () => onKey(icon);
     keyboard.appendChild(key);
   });
 }
@@ -189,17 +169,10 @@ function submitGuess() {
   if (guess.join("") === PUZZLE.solution.join("")) {
     finished = true;
     status.textContent = `¡Correcto! / Correct! 🎉 Solución / Solution: ${PUZZLE.solution.join(" ")}`;
-
-    const stats = getStats();
-    stats.played++;
-    stats.wins++;
-    stats.currentStreak++;
-    stats.maxStreak = Math.max(stats.maxStreak, stats.currentStreak);
-    saveStats(stats);
-
+    updateStats(true);
     saveState();
     shareBtn.disabled = false;
-  return;
+    return;
   }
 
   currentRow++;
@@ -210,12 +183,7 @@ function submitGuess() {
   if (currentRow >= MAX_ATTEMPTS) {
     finished = true;
     status.textContent = `Fin del juego / End of the game. Solución / Solution: ${PUZZLE.solution.join(" ")}`;
-
-    const stats = getStats();
-    stats.played++;
-    stats.currentStreak = 0;
-    saveStats(stats);
-
+    updateStats(false);
     saveState();
     shareBtn.disabled = false;
   }
@@ -226,10 +194,9 @@ function submitGuess() {
 // ======================
 
 function saveState() {
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify({ currentRow, guesses, finished })
-  );
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    currentRow, guesses, finished
+  }));
 }
 
 function loadState() {
@@ -241,8 +208,6 @@ function loadState() {
   finished = state.finished;
   guesses.forEach(renderGuessResult);
 }
-
-
 
 // ======================
 // STATS
@@ -259,75 +224,59 @@ function getStats() {
   };
 }
 
-function saveStats(stats) {
+function updateStats(win) {
+  const stats = getStats();
+  stats.played++;
+  if (win) {
+    stats.wins++;
+    stats.currentStreak++;
+    stats.maxStreak = Math.max(stats.maxStreak, stats.currentStreak);
+  } else {
+    stats.currentStreak = 0;
+  }
   localStorage.setItem(STATS_KEY, JSON.stringify(stats));
   renderStats();
 }
 
 function renderStats() {
-  const stats = getStats();
-  statPlayed.textContent = stats.played;
-  statWins.textContent = stats.wins;
-  statStreak.textContent = stats.currentStreak;
-  statMaxStreak.textContent = stats.maxStreak;
+  const s = getStats();
+  statPlayed.textContent = s.played;
+  statWins.textContent = s.wins;
+  statStreak.textContent = s.currentStreak;
+  statMaxStreak.textContent = s.maxStreak;
 }
 
-
 // ======================
-// SHARE RESULTS
+// SHARE
 // ======================
 
 shareBtn.onclick = () => {
   if (!finished) return;
 
-  const day = DAY_KEY;
-  const attemptText =
+  const attempt =
     currentRow < MAX_ATTEMPTS
       ? `${currentRow + 1}/${MAX_ATTEMPTS}`
       : `X/${MAX_ATTEMPTS}`;
 
-  const grid = guesses.map(guess => {
-    return guess.map((icon, i) => {
-      if (icon === PUZZLE.solution[i]) return "🟩";
-      if (PUZZLE.solution.includes(icon)) return "🟨";
-      return "⬛";
-    }).join("");
-  }).join("\n");
+  const grid = guesses.map(g =>
+    g.map((icon, i) =>
+      icon === PUZZLE.solution[i] ? "🟩" :
+      PUZZLE.solution.includes(icon) ? "🟨" : "⬛"
+    ).join("")
+  ).join("\n");
 
   const text =
-`ICONLE ${day}
-${attemptText}
+`ICONLE ${PUZZLE.ref}
+${attempt}
 
 ${grid}
 
 ${PUZZLE.title_es} / ${PUZZLE.title_en}
 https://iconle.com`;
 
-  // MÉTODO MODERNO
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(text).then(() => {
-      status.textContent = "Resultado copiado al portapapeles 📋";
-    }).catch(() => {
-      fallbackCopy(text);
-    });
-  } else {
-    fallbackCopy(text);
-  }
+  navigator.clipboard.writeText(text);
+  status.textContent = "Resultado copiado 📋";
 };
-
-function fallbackCopy(text) {
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  textarea.style.position = "fixed";
-  textarea.style.opacity = "0";
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand("copy");
-  document.body.removeChild(textarea);
-  status.textContent = "Resultado copiado al portapapeles 📋";
-}
-
-
 
 // ======================
 // LOAD PUZZLE
@@ -336,17 +285,21 @@ function fallbackCopy(text) {
 async function loadPuzzle() {
   const res = await fetch("puzzles.json");
   const puzzles = await res.json();
-  const index = new Date().getDate() % puzzles.length;
-  PUZZLE = puzzles[index];
+
+  PUZZLE = puzzles[DAY_INDEX];
+  if (!PUZZLE) {
+    status.textContent = "Sin información disponible hoy. / Info not available today.";
+    return;
+  }
 
   titleEl.textContent = `${PUZZLE.title_es} / ${PUZZLE.title_en}`;
   diffEl.textContent = `Dificultad: ${DIFFICULTY_MAP[PUZZLE.difficulty]}`;
-  
+
   initBoard();
   initKeyboard();
   loadState();
-  updateButtons();
   renderStats();
+  updateButtons();
   shareBtn.disabled = !finished;
 }
 
