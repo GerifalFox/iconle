@@ -20,8 +20,8 @@ const ICONS = [
   // Objetos y Cine (11) - Herramientas de trama
   "🔫", "🎬", "🎩", "⚔️", "💎", "💰", "💍", "🍎", "💊", "📖", "📞",
 
-  // Conceptos y Abstraptos (10) - El "tono" de la película
-  "❤️", "💀", "👑", "🌊", "🌕", "🌞", "⚡", "🎵", "💤", "🎭"
+  // Conceptos y Abstractos (10) - El "tono" de la película
+  "❤️", "💀", "👑", "🌊", "🌕", "🌞", "⚡", "🔥", "🎵", "💤", "🎭"
 ];
 
 
