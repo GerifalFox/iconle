@@ -1397,6 +1397,6 @@
   { "id": 296, "ref": "20261104", "title_es": "Enredados", "title_en": "Tangled", "difficulty": "easy", "solution": ["👸", "⚔️", "🏰"] },
   { "id": 297, "ref": "20261105", "title_es": "Lilo & Stitch", "title_en": "Lilo & Stitch", "difficulty": "easy", "solution": ["🏝️", "👽", "🌊"] },
   { "id": 298, "ref": "20261106", "title_es": "Shrek", "title_en": "Shrek", "difficulty": "easy", "solution": ["🧔", "🏰", "🐉"] },
-  { "id": 299, "ref": "20261107", "title_es": "Aladdín", "title_en": "Aladdin", "difficulty": "easy", "solution": ["🧔", "🐵", "💎"] }
+  { "id": 299, "ref": "20261107", "title_es": "Aladdín", "title_en": "Aladdin", "difficulty": "easy", "solution": ["🧔", "🐵", "💎"] },
   { "id": 300, "ref": "20261108", "title_es": "Pocahontas", "title_en": "Pocahontas", "difficulty": "medium", "solution": ["🌲", "🌲", "🚢"] }
 ]
