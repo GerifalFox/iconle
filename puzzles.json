@@ -258,8 +258,8 @@
     "title_en": "Se7en",
     "difficulty": "hard",
     "solution": [
-      "📦",
       "🧔",
+      "🔫",
       "💀"
     ]
   },
@@ -283,7 +283,7 @@
     "difficulty": "medium",
     "solution": [
       "🚀",
-      "🕷️",
+      "🛸",
       "👩"
     ]
   },
@@ -1350,7 +1350,7 @@
   { "id": 249, "ref": "20260918", "title_es": "Moneyball", "title_en": "Moneyball", "difficulty": "hard", "solution": ["🧔", "🧔", "💰"] },
   { "id": 250, "ref": "20260919", "title_es": "Jerry Maguire", "title_en": "Jerry Maguire", "difficulty": "medium", "solution": ["🧔", "📞", "💰"] },
   { "id": 251, "ref": "20260920", "title_es": "El Mensajero", "title_en": "The Postman", "difficulty": "hard", "solution": ["🧔", "🐎", "📖"] },
-  { "id": 252, "ref": "20260921", "title_es": "Náufrago", "title_en": "Cast Away", "difficulty": "easy", "solution": ["🧔", "🏝️", "📦"] },
+  { "id": 252, "ref": "20260921", "title_es": "Náufrago", "title_en": "Cast Away", "difficulty": "easy", "solution": ["🧔", "🏝️", "✈️"] },
   { "id": 253, "ref": "20260922", "title_es": "Señales", "title_en": "Signs", "difficulty": "medium", "solution": ["🏠", "🛸", "🌊"] },
   { "id": 254, "ref": "20260923", "title_es": "La Guerra de los Mundos", "title_en": "War of the Worlds", "difficulty": "easy", "solution": ["🛸", "🏙️", "⚡"] },
   { "id": 255, "ref": "20260924", "title_es": "Dunkerque", "title_en": "Dunkirk", "difficulty": "hard", "solution": ["🚢", "✈️", "⚔️"] },
@@ -1361,7 +1361,7 @@
   { "id": 260, "ref": "20260929", "title_es": "Un lugar tranquilo", "title_en": "A Quiet Place", "difficulty": "easy", "solution": ["💤", "🏠", "🛸"] },
   { "id": 261, "ref": "20260930", "title_es": "Bird Box", "title_en": "Bird Box", "difficulty": "medium", "solution": ["🎭", "🌊", "🌲"] },
   { "id": 262, "ref": "20261001", "title_es": "El Hoyo", "title_en": "The Platform", "difficulty": "hard", "solution": ["🏠", "🍎", "💀"] },
-  { "id": 263, "ref": "20261002", "title_es": "Parásitos", "title_en": "Parasite", "difficulty": "medium", "solution": ["🏠", "🏠", "🍎"] },
+  { "id": 263, "ref": "20261002", "title_es": "Parásitos", "title_en": "Parasite", "difficulty": "medium", "solution": ["🏠", "🧔", "🍎"] },
   { "id": 264, "ref": "20261003", "title_es": "Snowpiercer", "title_en": "Snowpiercer", "difficulty": "medium", "solution": ["🚀", "❄️", "⚔️"] },
   { "id": 265, "ref": "20261004", "title_es": "Tren a Busan", "title_en": "Train to Busan", "difficulty": "easy", "solution": ["🚗", "💀", "👦"] },
   { "id": 266, "ref": "20261005", "title_es": "Guerra Mundial Z", "title_en": "World War Z", "difficulty": "easy", "solution": ["💀", "🏙️", "✈️"] },
@@ -1375,7 +1375,7 @@
   { "id": 274, "ref": "20261013", "title_es": "Viernes 13", "title_en": "Friday the 13th", "difficulty": "easy", "solution": ["🌊", "🌊", "💀"] },
   { "id": 275, "ref": "20261014", "title_es": "Halloween", "title_en": "Halloween", "difficulty": "easy", "solution": ["⚔️", "🔥", "🏠"] },
   { "id": 276, "ref": "20261015", "title_es": "Pesadilla en Elm Street", "title_en": "A Nightmare on Elm Street", "difficulty": "easy", "solution": ["💤", "⚔️", "💀"] },
-  { "id": 277, "ref": "20261016", "title_es": "Hellraiser", "title_en": "Hellraiser", "difficulty": "hard", "solution": ["📦", "💀", "💀"] },
+  { "id": 277, "ref": "20261016", "title_es": "Hellraiser", "title_en": "Hellraiser", "difficulty": "hard", "solution": ["🧔", "⚔️", "💀"] },
   { "id": 278, "ref": "20261017", "title_es": "Candyman", "title_en": "Candyman", "difficulty": "hard", "solution": ["💍", "🎭", "⚔️"] },
   { "id": 279, "ref": "20261018", "title_es": "Psicosis", "title_en": "Psycho", "difficulty": "medium", "solution": ["🌊", "⚔️", "🏠"] },
   { "id": 280, "ref": "20261019", "title_es": "Los Pájaros", "title_en": "The Birds", "difficulty": "medium", "solution": ["🦇", "🏙️", "🏠"] },
@@ -1398,5 +1398,5 @@
   { "id": 297, "ref": "20261105", "title_es": "Lilo & Stitch", "title_en": "Lilo & Stitch", "difficulty": "easy", "solution": ["🏝️", "👽", "🌊"] },
   { "id": 298, "ref": "20261106", "title_es": "Shrek", "title_en": "Shrek", "difficulty": "easy", "solution": ["🧔", "🏰", "🐉"] },
   { "id": 299, "ref": "20261107", "title_es": "Aladdín", "title_en": "Aladdin", "difficulty": "easy", "solution": ["🧔", "🐵", "💎"] },
-  { "id": 300, "ref": "20261108", "title_es": "Pocahontas", "title_en": "Pocahontas", "difficulty": "medium", "solution": ["🌲", "🌲", "🚢"] }
+  { "id": 300, "ref": "20261108", "title_es": "Pocahontas", "title_en": "Pocahontas", "difficulty": "medium", "solution": ["🐺", "🌕", "🌲"] }
 ]
