@@ -286,7 +286,7 @@ shareBtn.onclick = () => {
     return rowEmojis.join("");
   }).join("\n");
 
-  const text = `ICONLE ${DAY_KEY} (${attemptText})\n\n${grid}\n\n🍿 ${PUZZLE.title_es}\nhttps://iconle.com`;
+  const text = `ICONLE ${DAY_KEY} (${attemptText})\n\n${grid}\n\n🎬 ${PUZZLE.title_en}\n🍿 ${PUZZLE.title_es}\nhttps://iconle.com\n#iconle`;
 
   if (navigator.share) {
     navigator.share({ text: text }).catch(() => copyToClipboard(text));
