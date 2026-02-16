@@ -170,13 +170,13 @@
   {
     "id": 15,
     "ref": "20260127",
-    "title_es": "Spider-Man",
-    "title_en": "Spider-Man",
+    "title_es": "Astroboy",
+    "title_en": "Astroboy",
     "difficulty": "easy",
     "solution": [
-      "🕷️",
-      "🏙️",
-      "🦸‍♂️"
+      "👦",
+      "🌌",
+      "⚡"
     ]
   },
   {
@@ -1222,7 +1222,7 @@
   { "id": 121, "ref": "20260513", "title_es": "X-Men", "title_en": "X-Men", "difficulty": "medium", "solution": ["🧔", "⚡", "🦸‍♂️"] },
   { "id": 122, "ref": "20260514", "title_es": "Guardianes de la Galaxia", "title_en": "Guardians of the Galaxy", "difficulty": "easy", "solution": ["🚀", "🎵", "🌌"] },
   { "id": 123, "ref": "20260515", "title_es": "Doctor Strange", "title_en": "Doctor Strange", "difficulty": "medium", "solution": ["🧙‍♂️", "🌌", "🎭"] },
-  { "id": 124, "ref": "20260516", "title_es": "Spider-Man: Un nuevo universo", "title_en": "Spider-Verse", "difficulty": "medium", "solution": ["🕷️", "🏙️", "🌌"] },
+  { "id": 124, "ref": "20260516", "title_es": "Yo, Robot", "title_en": "I, Robot", "difficulty": "medium", "solution": ["🧔", "🔫", "🤖"] },
   { "id": 125, "ref": "20260517", "title_es": "Los Increíbles", "title_en": "The Incredibles", "difficulty": "easy", "solution": ["🏠", "🦸‍♂️", "⚡"] },
   { "id": 126, "ref": "20260518", "title_es": "Kung Fu Panda", "title_en": "Kung Fu Panda", "difficulty": "easy", "solution": ["🦁", "⚔️", "🎭"] },
   { "id": 127, "ref": "20260519", "title_es": "Shrek 2", "title_en": "Shrek 2", "difficulty": "easy", "solution": ["🧙‍♂️", "🏰", "👑"] },
