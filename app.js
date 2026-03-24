@@ -186,6 +186,7 @@ function submitGuess() {
   if (guess.join("") === PUZZLE.solution.join("")) {
     finished = true;
     status.textContent = `¡Correcto! 🎉 La película era: ${PUZZLE.title_es}`;
+    setTimeout(showRetentionModal, 1500); // Aparece 1.5s después de terminar
     updateStats(true);
   } else {
     currentRow++;
@@ -338,5 +339,23 @@ async function loadPuzzle() {
     status.textContent = "Error al cargar el juego. Revisa la consola.";
   }
 }
+
+// ======================
+// FAV TAB
+// ======================
+
+function showRetentionModal() {
+    // Comprobamos si ya lo vio hoy para no molestar
+    if (!localStorage.getItem('modalVistoHoy')) {
+        document.getElementById('retention-modal').style.display = 'flex';
+        // Opcional: Marcar como visto hoy
+        localStorage.setItem('modalVistoHoy', 'true');
+    }
+}
+
+function closeModal() {
+    document.getElementById('retention-modal').style.display = 'none';
+}
+
 
 loadPuzzle();
