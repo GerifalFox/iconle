@@ -1231,7 +1231,7 @@
   { "id": 130, "ref": "20260522", "title_es": "Dunkerque", "title_en": "Dunkirk", "difficulty": "medium", "solution": ["✈️", "🚢", "🌊"] },
   { "id": 131, "ref": "20260523", "title_es": "Réquiem por un sueño", "title_en": "Requiem for a Dream", "difficulty": "hard", "solution": ["👩", "💊", "💀"] },
   { "id": 132, "ref": "20260524", "title_es": "Amélie", "title_en": "Amélie", "difficulty": "medium", "solution": ["👩", "🏙️", "❤️"] },
-  { "id": 133, "ref": "20260525", "title_es": "La Milla Verde", "title_en": "The Green Mile", "difficulty": "medium", "solution": ["🧔", "🧙‍♂️", "💀"] },
+  { "id": 133, "ref": "20260525", "title_es": "La Milla Verde", "title_en": "The Green Mile", "difficulty": "medium", "solution": ["🧔", "🐀", "💀"] },
   { "id": 134, "ref": "20260526", "title_es": "Cadena Perpetua", "title_en": "The Shawshank Redemption", "difficulty": "hard", "solution": ["🧔", "🏠", "🔨"] },
   { "id": 135, "ref": "20260527", "title_es": "Los Odiosos Ocho", "title_en": "The Hateful Eight", "difficulty": "medium", "solution": ["🧔", "❄️", "🔫"] },
   { "id": 136, "ref": "20260528", "title_es": "Reservoir Dogs", "title_en": "Reservoir Dogs", "difficulty": "hard", "solution": ["🧔", "🔫", "💰"] },
