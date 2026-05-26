@@ -104,6 +104,34 @@ function initKeyboard() {
   });
 }
 
+// Función para cargar la cita del día de forma segura para SEO
+function cargarCitaDelDia(numeroDia) {
+  fetch('quotes.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('No se pudo cargar el archivo de citas.');
+      }
+      return response.json();
+    })
+    
+    .then(quotes => {
+      // Validamos si existe la cita para el día actual, si no, ponemos una por defecto
+      const cita = quotes[numeroDia] || "«El cine es un espejo pintado.»";
+      const elementoCita = document.getElementById('cita-del-dia');
+      if (elementoCita) {
+        elementoCita.textContent = cita;
+      }
+    })
+    .catch(error => {
+      console.error('Error cargando la cita SEO:', error);
+      // Fallback silencioso para que el juego nunca se rompa ante el usuario
+      const elementoCita = document.getElementById('cita-del-dia');
+      if (elementoCita) {
+        elementoCita.style.display = 'none'; 
+      }
+    });
+}
+
 // ======================
 // INPUT
 // ======================
@@ -339,7 +367,7 @@ async function loadPuzzle() {
     status.textContent = "Error al cargar el juego. Revisa la consola.";
   }
 }
-
+cargarCitaDelDia(todayRef);
 // ======================
 // FAV TAB
 // ======================
