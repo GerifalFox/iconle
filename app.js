@@ -116,7 +116,7 @@ function cargarCitaDelDia(numeroDia) {
     
     .then(quotes => {
       // Validamos si existe la cita para el día actual, si no, ponemos una por defecto
-      const cita = quotes[numeroDia] || "«El cine es un espejo pintado.»";
+      const cita = quotes[numeroDia] || "«El cine es un espejo pintado.» // «Cinema is a painted mirror.»";
       const elementoCita = document.getElementById('cita-del-dia');
       if (elementoCita) {
         elementoCita.textContent = cita;
@@ -352,6 +352,8 @@ async function loadPuzzle() {
       PUZZLE = puzzles[0];
     }
 
+    cargarCitaDelDia(todayRef);
+    
     titleEl.textContent = `${PUZZLE.title_es} / ${PUZZLE.title_en}`;
     diffEl.textContent = `Dificultad: ${DIFFICULTY_MAP[PUZZLE.difficulty]}`;
     
@@ -367,7 +369,6 @@ async function loadPuzzle() {
     status.textContent = "Error al cargar el juego. Revisa la consola.";
   }
 }
-cargarCitaDelDia(todayRef);
 // ======================
 // FAV TAB
 // ======================
