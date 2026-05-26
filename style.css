@@ -285,3 +285,32 @@ footer {
 }
 
 .btn-primary:hover { transform: scale(1.05); }
+
+/* Estilos para la cita de cine del footer (SEO y Pistas) */
+.site-footer {
+  text-align: center;
+  margin-top: 30px;
+  padding: 15px;
+}
+
+.quote-container {
+  font-size: 0.9rem;
+  color: #666; /* Un tono grisáceo elegante y sutil */
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.4;
+}
+
+.quote-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.movie-quote {
+  font-style: italic;
+  font-weight: 500;
+}
