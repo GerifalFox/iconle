@@ -1238,7 +1238,7 @@
   { "id": 137, "ref": "20260529", "title_es": "Cantando bajo la lluvia", "title_en": "Singin' in the Rain", "difficulty": "easy", "solution": ["🧔", "🌊", "🎵"] },
   { "id": 138, "ref": "20260530", "title_es": "El Mago de Oz", "title_en": "The Wizard of Oz", "difficulty": "easy", "solution": ["👸", "🦁", "⚡"] },
   { "id": 139, "ref": "20260531", "title_es": "Casablanca", "title_en": "Casablanca", "difficulty": "medium", "solution": ["🧔", "👩", "✈️"] },
-  { "id": 140, "ref": "20260601", "title_es": "Regreso al Futuro", "title_en": "Back to the Future", "difficulty": "easy", "solution": ["🚗", "⚡", "🕒"] },
+  { "id": 140, "ref": "20260601", "title_es": "Regreso al Futuro", "title_en": "Back to the Future", "difficulty": "easy", "solution": ["🚗", "⚡", "👦"] },
   { "id": 141, "ref": "20260602", "title_es": "Indiana Jones y la última cruzada", "title_en": "The Last Crusade", "difficulty": "medium", "solution": ["🧔", "🎩", "👑"] },
   { "id": 142, "ref": "20260603", "title_es": "Jurassic World", "title_en": "Jurassic World", "difficulty": "easy", "solution": ["🦖", "🏙️", "🦖"] },
   { "id": 143, "ref": "20260604", "title_es": "Godzilla", "title_en": "Godzilla", "difficulty": "easy", "solution": ["🦖", "🏙️", "🌊"] },
