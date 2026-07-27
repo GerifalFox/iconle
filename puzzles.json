@@ -1294,7 +1294,7 @@
   { "id": 193, "ref": "20260724", "title_es": "8 Millas", "title_en": "8 Mile", "difficulty": "medium", "solution": ["🧔", "🏙️", "🎵"] },
   { "id": 194, "ref": "20260725", "title_es": "Déjame salir", "title_en": "Get Out", "difficulty": "medium", "solution": ["🧔", "🏠", "🎭"] },
   { "id": 195, "ref": "20260726", "title_es": "Nosotros", "title_en": "Us", "difficulty": "medium", "solution": ["🏠", "⚔️", "🎭"] },
-  { "id": 196, "ref": "20260727", "title_es": "Nop", "title_en": "Nope", "difficulty": "hard", "solution": ["🐎", "🛸", "🏙️"] },
+  { "id": 196, "ref": "20260727", "title_es": "Nop", "title_en": "Nope", "difficulty": "hard", "solution": ["🏜️", "🛸", "🏙️"] },
   { "id": 197, "ref": "20260728", "title_es": "Midsommar", "title_en": "Midsommar", "difficulty": "hard", "solution": ["👩", "🌞", "💀"] },
   { "id": 198, "ref": "20260729", "title_es": "Hereditary", "title_en": "Hereditary", "difficulty": "hard", "solution": ["🏠", "💀", "🎭"] },
   { "id": 199, "ref": "20260730", "title_es": "La Bruja", "title_en": "The Witch", "difficulty": "hard", "solution": ["🌲", "🐺", "🧙‍♂️"] },
