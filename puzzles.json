@@ -1301,7 +1301,7 @@
   { "id": 200, "ref": "20260731", "title_es": "El Faro", "title_en": "The Lighthouse", "difficulty": "hard", "solution": ["🧔", "🧔", "🌊"] },
   { "id": 201, "ref": "20260801", "title_es": "Terminator", "title_en": "The Terminator", "difficulty": "easy", "solution": ["🤖", "🔫", "💀"] },
   { "id": 202, "ref": "20260802", "title_es": "WALL-E", "title_en": "WALL-E", "difficulty": "easy", "solution": ["🤖", "🌌", "🌲"] },
-  { "id": 203, "ref": "20260803", "title_es": "Del Revés (Inside Out)", "title_en": "Inside Out", "difficulty": "easy", "solution": ["👦", "⭐", "🎈"] },
+  { "id": 203, "ref": "20260803", "title_es": "Del Revés (Inside Out)", "title_en": "Inside Out", "difficulty": "easy", "solution": ["👩", "🎭", "🚀"] },
   { "id": 204, "ref": "20260804", "title_es": "Blade Runner", "title_en": "Blade Runner", "difficulty": "hard", "solution": ["🤖", "🏙️", "🌊"] },
   { "id": 205, "ref": "20260805", "title_es": "El Padrino 2", "title_en": "The Godfather Part II", "difficulty": "hard", "solution": ["🧔", "💰", "🚢"] },
   { "id": 206, "ref": "20260806", "title_es": "Scarface", "title_en": "Scarface", "difficulty": "medium", "solution": ["🧔", "💰", "🔫"] },
