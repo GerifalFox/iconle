@@ -1307,7 +1307,7 @@
   { "id": 206, "ref": "20260806", "title_es": "Scarface", "title_en": "Scarface", "difficulty": "medium", "solution": ["🧔", "💰", "🔫"] },
   { "id": 207, "ref": "20260807", "title_es": "American Psycho", "title_en": "American Psycho", "difficulty": "medium", "solution": ["🧔", "⚔️", "🏙️"] },
   { "id": 208, "ref": "20260808", "title_es": "Scream", "title_en": "Scream", "difficulty": "easy", "solution": ["👻", "📞", "⚔️"] },
-  { "id": 209, "ref": "20260809", "title_es": "It", "title_en": "It", "difficulty": "easy", "solution": ["🎈", "👦", "💀"] },
+  { "id": 209, "ref": "20260809", "title_es": "It", "title_en": "It", "difficulty": "easy", "solution": ["🌌", "👦", "💀"] },
   { "id": 210, "ref": "20260810", "title_es": "Saw", "title_en": "Saw", "difficulty": "medium", "solution": ["🕒", "⚔️", "💀"] },
   { "id": 211, "ref": "20260811", "title_es": "El Sexto Sentido", "title_en": "The Sixth Sense", "difficulty": "medium", "solution": ["👦", "👻", "🎭"] },
   { "id": 212, "ref": "20260812", "title_es": "Los Otros", "title_en": "The Others", "difficulty": "hard", "solution": ["🏠", "👩", "👻"] },
